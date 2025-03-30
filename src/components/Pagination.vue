@@ -19,43 +19,38 @@ export default defineComponent({
 </script>
 
 <style scoped>
-/* Pagination container */
 .pagination {
   display: flex;
-  justify-content: center; /* Center align pagination controls */
-  align-items: center; /* Vertically align items */
-  margin: 20px 0; /* Add spacing around pagination */
-  gap: 10px; /* Space between buttons and text */
-  font-size: 16px; /* Larger text for readability */
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+  gap: 10px;
+  font-size: 16px;
 }
 
-/* Button styling */
 .pagination button {
-  padding: 10px 15px; /* Add internal spacing */
-  font-size: 14px; /* Font size for buttons */
-  color: #ffffff; /* White text color */
-  background-color: #007BFF; /* Blue background */
-  border: none; /* Remove default border */
-  border-radius: 5px; /* Slightly rounded corners */
-  cursor: pointer; /* Pointer cursor on hover */
-  transition: background-color 0.2s, transform 0.2s; /* Smooth hover effects */
+  padding: 10px 15px;
+  font-size: 14px;
+  color: #ffffff;
+  background-color: #007BFF;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
 }
 
-/* Disabled button styling */
 .pagination button:disabled {
-  background-color: #bbb; /* Light gray for disabled buttons */
-  cursor: not-allowed; /* Show "not-allowed" cursor */
+  background-color: #bbb;
+  cursor: not-allowed;
 }
 
-/* Hover state styling */
 .pagination button:not(:disabled):hover {
-  background-color: #0056b3; /* Darker blue on hover */
-  transform: scale(1.05); /* Slight scaling effect */
+  background-color: #0056b3;
+  transform: scale(1.05);
 }
 
-/* Pagination text styling */
 .pagination span {
-  color: #333; /* Dark text color */
-  font-weight: bold; /* Slightly bolder text */
+  color: #333;
+  font-weight: bold;
 }
 </style>

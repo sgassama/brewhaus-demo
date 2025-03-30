@@ -122,33 +122,33 @@ export default defineComponent({
 <style scoped>
 /* Typography and spacing for brewery list */
 .brewery-list {
-  list-style: none; /* Remove default bullet points */
-  padding: 0; /* Remove default padding */
-  margin: 20px 0; /* Add spacing around the list */
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
 }
 
 .brewery-item {
-  margin: 10px 0; /* Space between list items */
-  padding: 15px; /* Internal padding for better click area */
-  background-color: #ffffff; /* White background for item */
-  border: 1px solid #ddd; /* Light border around items */
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
-  transition: transform 0.2s, box-shadow 0.2s; /* Smooth animation effects */
+  margin: 10px 0;
+  padding: 15px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .brewery-item:hover {
-  transform: translateY(-2px); /* Lift up slightly on hover */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15); /* Enhance shadow on hover */
+  transform: translateY(-2px);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .brewery-item a {
-  text-decoration: none; /* Remove underline from links */
-  color: #333; /* Dark text color */
+  text-decoration: none;
+  color: #333;
   font-weight: bold;
 }
 
 .brewery-item a:hover {
-  color: #007BFF; /* Make link blue on hover */
+  color: #007BFF;
 }
 </style>

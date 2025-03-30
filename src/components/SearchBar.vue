@@ -30,28 +30,25 @@ export default defineComponent({
 </script>
 
 <style scoped>
-/* Styling for the search bar container */
 .search-bar {
-  margin: 20px 0; /* Space around the search bar */
-  text-align: center; /* Center the input field horizontally */
+  margin: 20px 0;
+  text-align: center;
 }
 
-/* Basic input styles for the search bar */
 .search-bar input {
-  padding: 10px 15px; /* Add space inside the input */
-  font-size: 16px; /* Slightly larger font for readability */
-  border: 1px solid #ccc; /* Light gray border around the input */
-  border-radius: 8px; /* Rounded corners */
-  outline: none; /* Remove default focus outline */
-  width: 100%; /* Full width for mobile responsiveness */
-  max-width: 400px; /* Limit width on larger screens */
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  transition: border-color 0.2s, box-shadow 0.2s; /* Smooth effects */
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-/* Focus state for the input */
 .search-bar input:focus {
-  border-color: #007BFF; /* Blue border on focus */
-  box-shadow: 0px 4px 8px rgba(0, 123, 255, 0.2); /* Enhance shadow */
+  border-color: #007BFF;
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
 }
 </style>

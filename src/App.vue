@@ -4,6 +4,7 @@
          alt="Hoppy To Be-Er Logo"
          width="100"
          height="100"
+         class="logo"
     >
     <router-view></router-view>
   </div>
@@ -15,8 +16,8 @@ export default {
 };
 </script>
 
+
 <style scoped>
-/* Add a simple flexbox layout to center the content */
 #app {
   display: flex;
   flex-direction: column;
@@ -24,20 +25,42 @@ export default {
   justify-content: center;
   min-height: 100vh;
   text-align: center;
-  background-color: #f5f5f5; /* A soft background color */
+  background-color: #f5f5f5;
   font-family: Arial, Helvetica, sans-serif;
 }
 
 img {
-  margin-bottom: 20px; /* Add space below the image */
+  margin-bottom: 20px;
 }
 
 router-view {
   width: 100%;
   max-width: 800px;
   padding: 20px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for router content */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   background: #ffffff;
-  border-radius: 10px; /* Rounded corners */
+  border-radius: 10px;
+}
+
+.logo {
+  animation: swivel 1s ease-in-out;
+}
+
+@keyframes swivel {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(10deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(-10deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
 </style>

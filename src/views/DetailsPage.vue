@@ -81,7 +81,6 @@ export default defineComponent({
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Back link styling */
 .back-link {
   display: inline-block;
   margin-bottom: 20px;
@@ -96,14 +95,12 @@ export default defineComponent({
   text-decoration: underline;
 }
 
-/* Placeholder for loading state */
 .loading {
   text-align: center;
   font-size: 16px;
   color: #666;
 }
 
-/* Not found message styling */
 .not-found {
   text-align: center;
   font-size: 18px;
@@ -111,7 +108,6 @@ export default defineComponent({
   font-weight: bold;
 }
 
-/* Card-like style for brewery details */
 .brewery-card {
   padding: 20px;
   background: #f9f9f9;
@@ -120,7 +116,6 @@ export default defineComponent({
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Brewery name styling */
 .brewery-name {
   font-size: 24px;
   font-weight: bold;
@@ -129,7 +124,6 @@ export default defineComponent({
   text-align: center;
 }
 
-/* Brewery details layout and spacing */
 .brewery-details {
   line-height: 1.6;
   color: #555;
@@ -147,7 +141,6 @@ export default defineComponent({
   margin-right: 10px;
 }
 
-/* Link styling for brewery website */
 .brewery-link {
   color: #007bff;
   text-decoration: none;
@@ -159,5 +152,4 @@ export default defineComponent({
   color: #0056b3;
   text-decoration: underline;
 }
-
 </style>
