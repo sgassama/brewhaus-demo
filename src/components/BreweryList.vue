@@ -4,7 +4,11 @@
     <div v-if="loading">Loading breweries...</div>
     <ul>
       <li v-for="brewery in breweries" :key="brewery.id">
-        <router-link :to="{ name: 'Details', params: { id: brewery.id }}">
+        <router-link :to="{
+          name: 'Details',
+          params: { id: brewery.id },
+          query: $route.query
+        }">
           {{ brewery.name }}
         </router-link>
       </li>
@@ -12,7 +16,7 @@
     <Pagination
       :current-page="currentPage"
       :total-pages="totalPages"
-      @change-page="fetchBreweries"
+      @change-page="goToPage"
     />
   </div>
 </template>
@@ -23,13 +27,17 @@ import axios from 'axios';
 import Pagination from '@/components/Pagination.vue';
 import SearchBar from '@/components/SearchBar.vue';
 import type { Brewery } from '@/types';
+import { useRoute, useRouter } from 'vue-router'
 
 export default defineComponent({
   name: 'BreweryList',
   components: { Pagination, SearchBar },
   setup() {
+    const route = useRoute();
+    const router = useRouter();
+
     const breweries = ref<Brewery[]>([]);
-    const currentPage = ref<number>(1);
+    const currentPage = ref<number>(Number(route.query.page) || 1);
     const perPage = ref<number>(10);
     const totalBreweries = ref<number>(0);
     const searchQuery = ref<string>('');
@@ -61,19 +69,38 @@ export default defineComponent({
       }
     };
 
+    const goToPage = (page: number): void => {
+      // Update query params
+      router.push({ query: { ...route.query, page: page.toString() } });
+      // Fetch new data for the selected page
+      fetchBreweries(page);
+    };
+
     const handleSearch = (query: string): void => {
       searchQuery.value = query; // Update the search query
       currentPage.value = 1; // Reset to the first page
-      fetchBreweries(); // Fetch results for the new query
+      router.push({
+        name: route.name,
+        query: { ...route.query, page: '1', search: query },
+      });
+
+      fetchBreweries();
     };
 
-    watch(searchQuery, () => {
-      currentPage.value = 1; // Reset to the first page when the query changes
-      fetchBreweries(); // Fetch breweries for the updated search query
+    watch(route.query, (newQuery) => {
+      const nextPage = Number(newQuery.page) || 1;
+      if (nextPage !== currentPage.value) {
+        // Fetch breweries whenever page changes
+        fetchBreweries(nextPage);
+      }
     });
 
     onMounted(() => {
-      fetchBreweries();
+      // Get the current page from query
+      const initialPage = Number(route.query.page) || 1;
+      // Synchronize currentPage with the query
+      currentPage.value = initialPage;
+      fetchBreweries(initialPage);
     });
 
     return {
@@ -85,6 +112,7 @@ export default defineComponent({
       loading,
       fetchBreweries,
       handleSearch,
+      goToPage,
       totalPages
     };
   },

@@ -1,6 +1,10 @@
 <template>
   <div class="details-page">
-    <router-link to="/" class="back-link">Back to list</router-link>
+    <router-link :to="{ name: 'Home', query: $route.query }"
+                 class="back-link">
+      Back to list
+    </router-link>
+
     <div v-if="loading">Loading brewery details...</div>
     <div v-else-if="brewery">
       <h1>{{ brewery.name }}</h1>
@@ -28,33 +32,33 @@
 import { ref, defineComponent, onMounted } from 'vue';
 import axios from 'axios';
 import { useRoute } from 'vue-router';
-import type { Brewery } from '@/types'; // Import the Brewery type
+import type { Brewery } from '@/types';
 
 export default defineComponent({
   name: 'DetailsPage',
   setup() {
     const route = useRoute();
-    const brewery = ref<Brewery | null>(null); // The brewery details
-    const loading = ref<boolean>(false); // Loading state
+    const brewery = ref<Brewery | null>(null);
+    const loading = ref<boolean>(false);
 
     const fetchBreweryDetails = async (): Promise<void> => {
-      const breweryId = route.params.id as string; // Get the ID from the route parameters
+      const breweryId = route.params.id as string;
       const url = `https://api.openbrewerydb.org/breweries/${breweryId}`;
       loading.value = true;
 
       try {
-        const response = await axios.get(url); // Fetch details from the API
+        const response = await axios.get(url);
         brewery.value = response.data;
       } catch (error) {
         console.error('Error fetching brewery details:', error);
-        brewery.value = null; // If not found or there's an error
+        brewery.value = null; // Reset to null on error
       } finally {
-        loading.value = false; // End loading state
+        loading.value = false;
       }
     };
 
     onMounted(() => {
-      fetchBreweryDetails(); // Fetch details when the component mounts
+      fetchBreweryDetails();
     });
 
     return {
