@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
-    "baseUrl": ".", // This sets the root of your project
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"] // Alias for `@`
-    }
+      "@/*": ["src/*"]
+    },
+    "types": ["vitest/globals"]
   },
   "files": [],
   "references": [

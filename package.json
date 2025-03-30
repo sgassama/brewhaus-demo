@@ -16,8 +16,11 @@
     "vue-router": "^4.5.0"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/vue": "^8.1.0",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vitest/ui": "^3.0.9",
+    "@vue/test-utils": "^2.4.6",
     "@vue/tsconfig": "^0.7.0",
     "happy-dom": "^17.4.4",
     "jsdom": "^26.0.0",

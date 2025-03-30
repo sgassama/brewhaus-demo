@@ -1,0 +1,6 @@
+{
+  "env": {
+    "vitest/globals": true
+  },
+  "plugins": ["vitest"]
+}
