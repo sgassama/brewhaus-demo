@@ -1,6 +1,7 @@
 export interface Brewery {
   id: string;
   name: string;
+  description: string;
   brewery_type: string;
   street: string;
   city: string;

@@ -30,8 +30,9 @@
 </template>
 
 <script lang="ts">
+import * as api from '@/services/api.ts'
+import { useHead } from '@vueuse/head'
 import { ref, defineComponent, onMounted } from 'vue';
-import axios from 'axios';
 import { useRoute } from 'vue-router';
 import type { Brewery } from '@/types';
 
@@ -44,12 +45,21 @@ export default defineComponent({
 
     const fetchBreweryDetails = async (): Promise<void> => {
       const breweryId = route.params.id as string;
-      const url = `https://api.openbrewerydb.org/breweries/${breweryId}`;
       loading.value = true;
 
       try {
-        const response = await axios.get(url);
-        brewery.value = response.data;
+        brewery.value = await api.fetchBreweryDetails(breweryId);
+
+        useHead({
+          title: `${brewery.value?.name ? brewery.value.name + ' | ' : null} Hoppy To Be-Er`,
+          meta: [
+            {
+              name: 'keywords',
+              content: `${brewery.value?.name ? brewery.value.name + ',' : null} Brewery, Beer, Brewing, ${brewery.value?.city ? brewery.value.city + ',' : null} ${brewery.value?.state ? brewery.value.state : ''}`,
+            },
+          ],
+        });
+
       } catch (error) {
         console.error('Error fetching brewery details:', error);
         brewery.value = null; // Reset to null on error

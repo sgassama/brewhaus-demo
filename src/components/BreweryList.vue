@@ -23,7 +23,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, onMounted, computed, watch } from 'vue'
-import axios from 'axios';
+import * as api from '@/services/api.ts'
 import Pagination from '@/components/Pagination.vue';
 import SearchBar from '@/components/SearchBar.vue';
 import type { Brewery } from '@/types';
@@ -49,11 +49,10 @@ export default defineComponent({
     const fetchBreweries = async (page = 1): Promise<void> => {
       loading.value = true;
       try {
-        const url = `https://api.openbrewerydb.org/breweries?page=${page}&per_page=${perPage.value}&by_name=${searchQuery.value}`;
-        const response = await axios.get(url);
-        const receivedCount = response.data.length;
+        const response = await api.fetchBreweries(page, perPage.value, searchQuery.value);
+        const receivedCount = response.length;
 
-        breweries.value = response.data;
+        breweries.value = response;
 
         if(!searchQuery.value) {
           totalBreweries.value = 1000;
@@ -70,10 +69,8 @@ export default defineComponent({
     };
 
     const goToPage = (page: number): void => {
-      // Update query params
-      router.push({ query: { ...route.query, page: page.toString() } });
-      // Fetch new data for the selected page
-      fetchBreweries(page);
+      router.push({ query: { ...route.query, page: page.toString() } });   // Update query params
+      fetchBreweries(page);  // Fetch new data for the selected page
     };
 
     const handleSearch = (query: string): void => {
@@ -89,17 +86,14 @@ export default defineComponent({
 
     watch(route.query, (newQuery) => {
       const nextPage = Number(newQuery.page) || 1;
-      if (nextPage !== currentPage.value) {
-        // Fetch breweries whenever page changes
+      if (nextPage !== currentPage.value) { // Fetch breweries whenever page changes
         fetchBreweries(nextPage);
       }
     });
 
     onMounted(() => {
-      // Get the current page from query
-      const initialPage = Number(route.query.page) || 1;
-      // Synchronize currentPage with the query
-      currentPage.value = initialPage;
+      const initialPage = Number(route.query.page) || 1; // Get the current page from query params
+      currentPage.value = initialPage; // Synchronize currentPage with the query params
       fetchBreweries(initialPage);
     });
 
@@ -120,7 +114,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-/* Typography and spacing for brewery list */
 .brewery-list {
   list-style: none;
   padding: 0;
