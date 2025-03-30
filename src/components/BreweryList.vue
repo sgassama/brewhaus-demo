@@ -2,8 +2,8 @@
   <div>
     <SearchBar @search="handleSearch" />
     <div v-if="loading">Loading breweries...</div>
-    <ul>
-      <li v-for="brewery in breweries" :key="brewery.id">
+    <ul class="brewery-list">
+      <li v-for="brewery in breweries" :key="brewery.id" class="brewery-item">
         <router-link :to="{
           name: 'Details',
           params: { id: brewery.id },
@@ -118,3 +118,37 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped>
+/* Typography and spacing for brewery list */
+.brewery-list {
+  list-style: none; /* Remove default bullet points */
+  padding: 0; /* Remove default padding */
+  margin: 20px 0; /* Add spacing around the list */
+}
+
+.brewery-item {
+  margin: 10px 0; /* Space between list items */
+  padding: 15px; /* Internal padding for better click area */
+  background-color: #ffffff; /* White background for item */
+  border: 1px solid #ddd; /* Light border around items */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+  transition: transform 0.2s, box-shadow 0.2s; /* Smooth animation effects */
+}
+
+.brewery-item:hover {
+  transform: translateY(-2px); /* Lift up slightly on hover */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15); /* Enhance shadow on hover */
+}
+
+.brewery-item a {
+  text-decoration: none; /* Remove underline from links */
+  color: #333; /* Dark text color */
+  font-weight: bold;
+}
+
+.brewery-item a:hover {
+  color: #007BFF; /* Make link blue on hover */
+}
+</style>

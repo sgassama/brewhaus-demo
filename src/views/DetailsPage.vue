@@ -5,9 +5,10 @@
       Back to list
     </router-link>
 
-    <div v-if="loading">Loading brewery details...</div>
-    <div v-else-if="brewery">
-      <h1>{{ brewery.name }}</h1>
+    <div v-if="loading" class="loading">Loading brewery details...</div>
+
+    <div v-else-if="brewery" class="brewery-card">
+      <h1 class="brewery-name">{{ brewery.name }}</h1>
       <div class="brewery-details">
         <p><strong>Type:</strong> {{ brewery.brewery_type }}</p>
         <p><strong>Address:</strong> {{ brewery.street }}, {{ brewery.city }}, {{ brewery.state }}</p>
@@ -15,7 +16,7 @@
         <p><strong>Country:</strong> {{ brewery.country }}</p>
         <p>
           <strong>Website: </strong>
-          <a :href="brewery.website_url" target="_blank" rel="noopener noreferrer">
+          <a :href="brewery.website_url" target="_blank" rel="noopener noreferrer" class="brewery-link">
             {{ brewery.website_url }}
           </a>
           <span v-if="!brewery.website_url">N/A</span>
@@ -70,22 +71,93 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.details-page {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Back link styling */
 .back-link {
   display: inline-block;
-  margin-bottom: 12px;
-  text-decoration: none;
+  margin-bottom: 20px;
+  font-weight: bold;
   color: #007bff;
+  text-decoration: none;
+  transition: color 0.2s;
 }
 
 .back-link:hover {
+  color: #0056b3;
   text-decoration: underline;
 }
 
+/* Placeholder for loading state */
+.loading {
+  text-align: center;
+  font-size: 16px;
+  color: #666;
+}
+
+/* Not found message styling */
+.not-found {
+  text-align: center;
+  font-size: 18px;
+  color: #ff4d4f;
+  font-weight: bold;
+}
+
+/* Card-like style for brewery details */
+.brewery-card {
+  padding: 20px;
+  background: #f9f9f9;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Brewery name styling */
+.brewery-name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+/* Brewery details layout and spacing */
+.brewery-details {
+  line-height: 1.6;
+  color: #555;
+  font-size: 16px;
+}
+
 .brewery-details p {
-  margin: 8px 0;
+  margin: 10px 0;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .brewery-details p strong {
-  font-weight: bold;
+  color: #333;
+  margin-right: 10px;
 }
+
+/* Link styling for brewery website */
+.brewery-link {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.2s;
+}
+
+.brewery-link:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
 </style>
