@@ -33,6 +33,7 @@ export default defineComponent({
 .search-bar {
   margin: 20px 0;
   text-align: center;
+  display: flex;
 }
 
 .search-bar input {
