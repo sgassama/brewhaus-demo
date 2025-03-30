@@ -13,9 +13,7 @@ describe('Brewery service API', () => {
 
     const result: Brewery[] = await fetchBreweries(1, 10, 'beer')
 
-    expect(mockedAxios.get).toHaveBeenCalledWith('https://api.openbrewerydb.org/v1/breweries', {
-      params: { page: 1, per_page: 10, query: 'beer' },
-    })
+    expect(mockedAxios.get).toHaveBeenCalledWith('https://api.openbrewerydb.org/v1/breweries?page=1&per_page=10&by_name=beer')
     expect(result).toEqual(mockResponse)
   })
 
