@@ -11,11 +11,13 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
+import { useRoute } from 'vue-router'
 
 export default defineComponent({
   name: 'SearchBar',
   setup(_, { emit }) {
-    const searchQuery = ref<string>('');
+    const route = useRoute();
+    const searchQuery = ref<string>(route.query.search as string || '');
 
     const onSearch = (): void => {
       emit('search', searchQuery.value);

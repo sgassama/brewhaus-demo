@@ -40,7 +40,7 @@ export default defineComponent({
     const currentPage = ref<number>(Number(route.query.page) || 1);
     const perPage = ref<number>(10);
     const totalBreweries = ref<number>(0);
-    const searchQuery = ref<string>('');
+    const searchQuery = ref<string>(route.query.search as string || '');
     const loading = ref<boolean>(false);
     const totalPages = computed(() => {
       return Math.ceil(totalBreweries.value / perPage.value);
@@ -49,10 +49,8 @@ export default defineComponent({
     const fetchBreweries = async (page = 1): Promise<void> => {
       loading.value = true;
       try {
-        const response = await api.fetchBreweries(page, perPage.value, searchQuery.value);
-        const receivedCount = response.length;
-
-        breweries.value = response;
+        breweries.value = await api.fetchBreweries(page, perPage.value, searchQuery.value);
+        const receivedCount = breweries.value.length;
 
         if(!searchQuery.value) {
           totalBreweries.value = 1000;
@@ -69,7 +67,7 @@ export default defineComponent({
     };
 
     const goToPage = (page: number): void => {
-      router.push({ query: { ...route.query, page: page.toString() } });   // Update query params
+      router.push({ query: { ...route.query, page: page.toString(), search: searchQuery.value } });   // Update query params
       fetchBreweries(page);  // Fetch new data for the selected page
     };
 

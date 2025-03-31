@@ -1,10 +1,25 @@
 import { render, fireEvent, screen } from '@testing-library/vue'
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi, beforeEach } from 'vitest'
 import '@testing-library/jest-dom'
 import SearchBar from '@/components/SearchBar.vue'
+import { useRoute } from 'vue-router'
+
+vi.mock('vue-router', () => ({
+  useRoute: vi.fn(),
+}))
+
+const mockUseRoute = (query: Record<string, any> = {}) => {
+  (useRoute as ReturnType<typeof vi.fn>).mockReturnValue({ query })
+}
 
 describe('SearchBar.vue', () => {
+  beforeEach(() => {
+    vi.clearAllMocks()
+  })
+
   it('renders the search input', () => {
+    mockUseRoute({ search: '' })
+
     render(SearchBar)
     const input = screen.getByPlaceholderText('Search breweries...')
 
@@ -13,6 +28,8 @@ describe('SearchBar.vue', () => {
   })
 
   it('emits "search" event with the correct query value when Enter is pressed', async () => {
+    mockUseRoute({ search: '' })
+
     const { emitted } = render(SearchBar)
     const input = screen.getByPlaceholderText('Search breweries...')
 
@@ -24,6 +41,8 @@ describe('SearchBar.vue', () => {
   })
 
   it('emits empty "search" event when Enter is pressed with an empty search query', async () => {
+    mockUseRoute({ search: '' })
+
     const { emitted } = render(SearchBar)
     const input = screen.getByPlaceholderText('Search breweries...')
 
@@ -33,6 +52,8 @@ describe('SearchBar.vue', () => {
   })
 
   it('updates the searchQuery when typing into the input', async () => {
+    mockUseRoute({ search: '' })
+
     render(SearchBar)
     const input = screen.getByPlaceholderText('Search breweries...')
 
