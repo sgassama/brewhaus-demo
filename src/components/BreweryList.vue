@@ -56,6 +56,8 @@ export default defineComponent({
           totalBreweries.value = 1000;
         } else if (receivedCount < perPage.value) {
           totalBreweries.value = (page - 1) * perPage.value + receivedCount;
+        } else if (!!receivedCount) {
+          totalBreweries.value = Math.max(totalBreweries.value, page * perPage.value);
         }
 
         currentPage.value = page;
