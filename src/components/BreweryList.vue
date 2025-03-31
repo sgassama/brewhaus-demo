@@ -84,12 +84,20 @@ export default defineComponent({
       fetchBreweries();
     };
 
-    watch(route.query, (newQuery) => {
-      const nextPage = Number(newQuery.page) || 1;
-      if (nextPage !== currentPage.value) { // Fetch breweries whenever page changes
-        fetchBreweries(nextPage);
-      }
-    });
+    watch(
+        () => route.query, // Getter function returns the current value of route.query
+        (newQuery) => {
+          const nextPage = Number(newQuery.page) || 1;
+          const newSearch = newQuery.search as string || '';
+
+          if (nextPage !== currentPage.value || newSearch !== searchQuery.value) {
+            searchQuery.value = newSearch;
+            currentPage.value = nextPage;
+            fetchBreweries(nextPage); // Fetch breweries when query params change
+          }
+        },
+        { deep: true }
+    );
 
     onMounted(() => {
       const initialPage = Number(route.query.page) || 1; // Get the current page from query params
