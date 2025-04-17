@@ -1,6 +1,5 @@
 import { render, fireEvent, screen } from '@testing-library/vue'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import '@testing-library/jest-dom'
 import SearchBar from '@/components/SearchBar.vue'
 import { useRoute } from 'vue-router'
 

@@ -3,8 +3,8 @@ import axios from "axios";
 
 const BASE_URL = import.meta.env.VITE_BREWERIES_API_BASE_URL;
 
-export const fetchBreweries = async (page = 1, perPage = 10, query = ""): Promise<Brewery[]> => {
-  const url = `${BASE_URL}?page=${page}&per_page=${perPage}${query ? '&by_name=' + query : ''}`;
+export const fetchBreweries = async (page = 1, perPage = 10, query = "", type= "mirco"): Promise<Brewery[]> => {
+  const url = `${BASE_URL}?page=${page}&per_page=${perPage}${query && `&by_name=${query}`}${type && `&by_type=${type}`}`
   const response = await axios.get(url);
   return response.data;
 };

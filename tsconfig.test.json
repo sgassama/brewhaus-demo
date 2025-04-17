@@ -1,6 +1,8 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "types": ["vitest/globals"] // Import global types for Vitest
-  }
+    "types": ["vitest/globals"], // Import global types for Vitest
+    "typeRoots": ["./node_modules/@types", "./node_modules/@vitest"]
+  },
+  "include": ["vitest.setup.ts"]
 }
