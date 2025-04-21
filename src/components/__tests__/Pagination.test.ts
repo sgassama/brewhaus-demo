@@ -1,7 +1,4 @@
-/// <reference types="vitest" />
 import { render, fireEvent, screen } from '@testing-library/vue'
-import { describe, it, expect } from 'vitest'
-// import '@testing-library/jest-dom'
 
 import Pagination from '@/components/Pagination.vue'
 

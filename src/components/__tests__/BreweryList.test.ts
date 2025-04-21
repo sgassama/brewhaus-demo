@@ -5,7 +5,6 @@ import SearchBar from '@/components/SearchBar.vue'
 import * as api from '@/services/api'
 import { mount } from '@vue/test-utils'
 import flushPromises from 'flush-promises'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const mockRouter = createRouter({
