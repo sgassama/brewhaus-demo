@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Hoppy To Be-Er | Breweries</h1>
+    <h1 data-test="app-header">Hoppy To Be-Er | Breweries</h1>
     <BreweryList />
   </div>
 </template>

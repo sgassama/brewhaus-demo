@@ -2,12 +2,12 @@
   "name": "brewhaus-demo",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
     "preview": "vite preview",
-    "test": "vitest"
+    "test": "vitest",
+    "cy:open": "cypress open"
   },
   "dependencies": {
     "@vueuse/head": "^2.0.0",
@@ -18,10 +18,12 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/vue": "^8.1.0",
+    "@types/cypress": "^1.1.6",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vitest/ui": "^3.0.9",
     "@vue/test-utils": "^2.4.6",
     "@vue/tsconfig": "^0.7.0",
+    "cypress": "^14.3.1",
     "flush-promises": "^1.0.2",
     "happy-dom": "^17.4.4",
     "jsdom": "^26.0.0",

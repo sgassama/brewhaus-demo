@@ -1,10 +1,10 @@
 import BreweryList from '@/components/BreweryList.vue'
+import BreweryTypeSelector from '@/components/BreweryTypeSelector.vue'
 import Pagination from '@/components/Pagination.vue'
 import SearchBar from '@/components/SearchBar.vue'
 import * as api from '@/services/api'
 import { mount } from '@vue/test-utils'
 import flushPromises from 'flush-promises'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const mockRouter = createRouter({
@@ -27,7 +27,7 @@ describe('BreweryList.vue', () => {
   let mockFetchBreweries: ReturnType<typeof vi.fn>
 
   beforeEach(() => {
-    mockFetchBreweries = vi.spyOn(api, 'fetchBreweries') as unknown as ReturnType<typeof vi.fn>
+    mockFetchBreweries = vi.spyOn(api, 'fetchBreweries') as ReturnType<typeof vi.fn>
     mockFetchBreweries.mockResolvedValue([
       {
         id: '1',
@@ -173,5 +173,20 @@ describe('BreweryList.vue', () => {
     )
     expect(wrapper.findAll('.brewery-item')).toHaveLength(0)
     consoleErrorSpy.mockRestore()
+  })
+
+  it('updates brewery list when BreweryListSelector selection changes', async () => {
+    const wrapper = mount(BreweryList, {
+      global: {
+        plugins: [mockRouter],
+      },
+    })
+    const breweryTypeSelect = wrapper.findComponent(BreweryTypeSelector)
+    // await fireEvent.change(breweryTypeSelect.element, { target: { value: 'large' } })
+    breweryTypeSelect.vm.$emit('update:modelValue', 'large')
+
+    await flushPromises()
+    await wrapper.vm.$nextTick()
+    expect(mockFetchBreweries).toHaveBeenCalledWith(1, 10, '', 'large')
   })
 })
