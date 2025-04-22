@@ -6,7 +6,8 @@
         "src/*"
       ]
     },
-    "moduleResolution": "bundler"
+    "moduleResolution": "bundler",
+    "module": "ESNext"
   },
   "files": [],
   "references": [
