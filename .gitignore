@@ -15,6 +15,10 @@ dist-ssr
 *.local
 *.tsbuildinfo
 
+# cypress
+cypress/**/*.js
+cypress/**/*.js.map
+
 # dotenv environment variables file
 .env*.local
 
