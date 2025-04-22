@@ -10,6 +10,9 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src'), // Map '@' to the 'src' directory
     },
   },
+  server: {
+    host: '0.0.0.0'
+  },
   // @ts-ignore
   test: {
     globals: true, // Allows using global test functions like `describe`, `it` without import

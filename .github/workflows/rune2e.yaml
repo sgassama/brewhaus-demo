@@ -1,0 +1,38 @@
+name: Run e2e tests
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build
+        uses: cypress-io/github-action@v6
+        with:
+          runTests: false
+          build: npm run build
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build
+          if-no-files-found: error
+          path: dist
+  rune2e:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: build
+          path: dist
+      - name: Run e2e
+        uses: cypress-io/github-action@v6
+        with:
+          start: npm run dev

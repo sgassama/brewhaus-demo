@@ -5,15 +5,6 @@
 
     <div>Selected: {{ breweryType || 'All' }}</div>
 
-    <!--    <select v-model="breweryType"-->
-    <!--            :onchange="() => fetchBreweries()">-->
-    <!--      <option disabled-->
-    <!--              value="">Please select one-->
-    <!--      </option>-->
-    <!--      <option>micro</option>-->
-    <!--      <option>large</option>-->
-    <!--    </select>-->
-
     <BreweryTypeSelector v-model="breweryType"/>
 
     <ul class="brewery-list">
@@ -59,7 +50,7 @@ const loading = ref<boolean>(false)
 const totalPages = computed(() => {
   return Math.ceil(totalBreweries.value / perPage.value)
 })
-const breweryType = ref<string>(route.query.breweryType as string || 'micro')
+const breweryType = ref<string>(route.query.breweryType as string || '')
 
 const fetchBreweries = async (): Promise<void> => {
   loading.value = true
