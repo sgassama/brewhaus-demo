@@ -5,7 +5,8 @@
       "@/*": [
         "src/*"
       ]
-    }
+    },
+    "moduleResolution": "bundler"
   },
   "files": [],
   "references": [
