@@ -10,7 +10,7 @@
     "sourceMap": true,
     "outDir": "dist",
     "target": "ESNext",
-    "module": "CommonJS",
+    "module": "es2017",
     "strict": true,
     "lib": ["esnext"],
     "esModuleInterop": true
