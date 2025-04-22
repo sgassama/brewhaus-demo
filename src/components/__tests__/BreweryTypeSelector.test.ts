@@ -1,29 +1,30 @@
-import BreweryTypeSelector from '@/components/BreweryTypeSelector.vue'
-import { fireEvent, render, screen } from '@testing-library/vue'
+import BreweryTypeSelector from '@/components/BreweryTypeSelector.vue';
+import { fireEvent, render, screen } from '@testing-library/vue';
+import { describe, expect } from 'vitest';
 
 describe('BreweryTypeSelector', () => {
 
   test('renders the BreweryTypeSelector correctly', () => {
-    const rendered = render(BreweryTypeSelector)
+    const rendered = render(BreweryTypeSelector);
 
-    expect(rendered).toBeDefined()
-  })
+    expect(rendered).toBeDefined();
+  });
 
   test('emits update:modelValue event when select changes', async () => {
     const { emitted } = render(BreweryTypeSelector, {
       props: {
         modelValue: '',
       },
-    })
+    });
 
-    const select = screen.getByRole('combobox') as HTMLSelectElement
+    const select = screen.getByRole('combobox') as HTMLSelectElement;
 
-    expect(select.value).toBe('')
+    expect(select.value).toBe('');
 
-    await fireEvent.update(select, 'large')
+    await fireEvent.update(select, 'large');
 
-    expect(select.value).toBe('large')
-    expect(emitted()['update:modelValue']).toBeTruthy()
-    expect(emitted()['update:modelValue'][0]).toEqual(['large'])
-  })
-})
+    expect(select.value).toBe('large');
+    expect(emitted()['update:modelValue']).toBeTruthy();
+    expect(emitted()['update:modelValue'][0]).toEqual(['large']);
+  });
+});
