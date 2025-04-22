@@ -1,9 +1,6 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "types": [
-      "cypress"
-    ],
     "paths": {
       "@/*": [
         "src/*"

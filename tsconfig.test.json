@@ -1,7 +1,15 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "typeRoots": ["./node_modules/@types", "./node_modules/@vitest"]
+    "types": [
+      "cypress"
+    ],
+    "typeRoots": [
+      "./node_modules/@types",
+      "./node_modules/@vitest"
+    ]
   },
-  "include": ["vitest.setup.ts"]
+  "include": [
+    "vitest.setup.ts"
+  ]
 }
