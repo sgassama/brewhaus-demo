@@ -1,6 +1,10 @@
 import { render, fireEvent, screen } from '@testing-library/vue'
 import SearchBar from '@/components/SearchBar.vue'
 import { useRoute } from 'vue-router'
+import * as matchers from '@testing-library/jest-dom/matchers';
+import {expect, describe, beforeEach, it} from 'vitest';
+
+expect.extend(matchers);
 
 vi.mock('vue-router', () => ({
   useRoute: vi.fn(),

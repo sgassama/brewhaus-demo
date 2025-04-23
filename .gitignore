@@ -12,6 +12,12 @@ dist
 dist-ssr
 *.local
 
+#vite/vitest
+vite.*.js
+vite.*.js.*
+vitest.*.js
+vitest.*.js.*
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -24,3 +30,8 @@ dist-ssr
 *.sw?
 
 .vscode
+
+*.tsbuildinfo
+
+# istanbul
+instrumented

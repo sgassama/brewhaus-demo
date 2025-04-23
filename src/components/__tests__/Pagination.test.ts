@@ -1,6 +1,10 @@
 import { render, fireEvent, screen } from '@testing-library/vue'
 
 import Pagination from '@/components/Pagination.vue'
+import * as matchers from '@testing-library/jest-dom/matchers';
+import {expect, describe, it} from 'vitest';
+
+expect.extend(matchers);
 
 describe('Pagination.vue', () => {
   it('renders correctly with current page and total pages', () => {
