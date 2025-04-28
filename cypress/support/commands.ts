@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-/// <reference path="../../src/cypress-env.d.ts" />
+/// <reference path="../../cypress-env.d.ts" />
 // ***********************************************
 // This example commands.ts shows you how to
 // create various custom commands and overwrite

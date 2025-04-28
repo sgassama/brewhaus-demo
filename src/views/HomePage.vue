@@ -1,35 +1,26 @@
 <template>
-  <div>
-    <h1 data-test="app-header">Hoppy To Be-Er | Breweries</h1>
-    <BreweryList />
-  </div>
+  <ion-page>
+    <BreweryList/>
+  </ion-page>
 </template>
 
-<script lang="ts">
-import { useHead } from '@vueuse/head'
-import { defineComponent } from 'vue';
+<script lang="ts" setup>
 import BreweryList from '@/components/BreweryList.vue';
+import { IonPage } from '@ionic/vue';
+import { useHead } from '@vueuse/head';
 
-export default defineComponent({
-  name: 'HomePage',
-  components: {
-    BreweryList,
-  },
-  setup() {
-    useHead({
-      title: 'Hoppy To Be-Er | Breweries',
-      meta: [
-        {
-          name: 'description',
-          content: 'Discover breweries and their details on Hoppy To Be-Er.',
-        },
-        {
-          name: 'keywords',
-          content: `Brewery, Beer, Brewing`,
-        },
-      ],
-    });
-    return {};
-  },
+useHead({
+  title: 'Hoppy To Be-Er | Breweries',
+  meta: [
+    {
+      name: 'description',
+      content: 'Discover breweries and their details on Hoppy To Be-Er.',
+    },
+    {
+      name: 'keywords',
+      content: `Brewery, Beer, Brewing`,
+    },
+  ],
 });
+
 </script>

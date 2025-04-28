@@ -1,9 +1,5 @@
 import BreweryTypeSelector from '@/components/BreweryTypeSelector.vue'
 import { fireEvent, render, screen } from '@testing-library/vue'
-import * as matchers from '@testing-library/jest-dom/matchers';
-import {expect} from 'vitest';
-
-expect.extend(matchers);
 
 describe('BreweryTypeSelector', () => {
 

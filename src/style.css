@@ -13,6 +13,14 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/*ion-header ion-toolbar:first-of-type {*/
+/*  padding-top: var(--ion-safe-area-top, 100px);*/
+/*}*/
+
+ion-footer {
+  padding-bottom: var(--safe-area-inset-bottom, 10000px);
+}
+
 a {
   font-weight: 500;
   color: #646cff;

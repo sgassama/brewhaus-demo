@@ -6,10 +6,6 @@ import * as api from '@/services/api'
 import { mount } from '@vue/test-utils'
 import flushPromises from 'flush-promises'
 import { createRouter, createWebHistory } from 'vue-router'
-import * as matchers from '@testing-library/jest-dom/matchers';
-import {expect} from 'vitest';
-
-expect.extend(matchers);
 
 const mockRouter = createRouter({
   history: createWebHistory(),
