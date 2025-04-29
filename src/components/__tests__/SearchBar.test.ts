@@ -1,12 +1,12 @@
-import SearchBar from "@/components/SearchBar.vue";
 import { fireEvent, render, screen } from "@testing-library/vue";
+import SearchBar from "@/components/SearchBar.vue";
 import { useRoute } from "vue-router";
 
 vi.mock("vue-router", () => ({
   useRoute: vi.fn(),
 }));
 
-const mockUseRoute = (query: Record<string, any> = {}) => {
+const mockUseRoute = (query: Record<string, unknown> = {}) => {
   (useRoute as ReturnType<typeof vi.fn>).mockReturnValue({ query });
 };
 

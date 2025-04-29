@@ -15,7 +15,7 @@
         "src/*"
       ]
     },
-    "types": ["vitest/globals"]
+    "types": ["vitest/globals", "jest"]
   },
   "include": [
     "jest-dom.d.ts",

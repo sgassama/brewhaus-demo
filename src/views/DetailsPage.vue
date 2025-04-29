@@ -64,7 +64,6 @@
 
 <script lang="ts" setup>
 import * as api from "@/services/api.ts";
-import type { Brewery } from "@/types";
 import {
   IonCard,
   IonContent,
@@ -72,8 +71,9 @@ import {
   IonPage,
   IonToolbar,
 } from "@ionic/vue";
-import { useHead } from "@vueuse/head";
 import { onMounted, ref } from "vue";
+import type { Brewery } from "@/types";
+// import { useHead } from "@vueuse/head";
 import { useRoute } from "vue-router";
 
 const route = useRoute();

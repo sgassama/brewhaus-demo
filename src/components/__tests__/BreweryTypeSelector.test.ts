@@ -1,13 +1,13 @@
-import BreweryTypeSelector from "@/components/BreweryTypeSelector.vue";
 import { fireEvent, render, screen } from "@testing-library/vue";
+import BreweryTypeSelector from "@/components/BreweryTypeSelector.vue";
 import { mount } from "@vue/test-utils";
 
 describe("BreweryTypeSelector", () => {
   test("renders the BreweryTypeSelector correctly", () => {
     const rendered = mount(BreweryTypeSelector, {
       props: {
-        modelValue: "",
-      },
+        modelValue: ""
+      }
     });
 
     expect(rendered).toBeDefined();
@@ -16,8 +16,8 @@ describe("BreweryTypeSelector", () => {
   test("emits update:modelValue event when select changes", async () => {
     const wrapper = render(BreweryTypeSelector, {
       props: {
-        modelValue: "",
-      },
+        modelValue: ""
+      }
     });
 
     const select = screen.getByRole("combobox") as HTMLSelectElement;

@@ -1,11 +1,11 @@
+import * as api from "@/services/api";
+import { createRouter, createWebHistory } from "vue-router";
 import BreweryList from "@/components/BreweryList.vue";
 import BreweryTypeSelector from "@/components/BreweryTypeSelector.vue";
 import Pagination from "@/components/Pagination.vue";
 import SearchBar from "@/components/SearchBar.vue";
-import * as api from "@/services/api";
-import { mount } from "@vue/test-utils";
 import flushPromises from "flush-promises";
-import { createRouter, createWebHistory } from "vue-router";
+import { mount } from "@vue/test-utils";
 
 const mockRouter = createRouter({
   history: createWebHistory(),
@@ -13,14 +13,14 @@ const mockRouter = createRouter({
     {
       path: "/", // Root path
       name: "Home",
-      component: { template: "<div>Home Page</div>" },
+      component: { template: "<div>Home Page</div>" }
     },
     {
       path: "/brewery/:id",
       name: "Details",
-      component: { template: "<div>Details Page</div>" },
-    },
-  ],
+      component: { template: "<div>Details Page</div>" }
+    }
+  ]
 });
 
 describe("BreweryList.vue", () => {
@@ -41,7 +41,7 @@ describe("BreweryList.vue", () => {
         state: "TX",
         postal_code: "12345",
         country: "USA",
-        website_url: "https://breweryone.com",
+        website_url: "https://breweryone.com"
       },
       {
         id: "2",
@@ -53,16 +53,16 @@ describe("BreweryList.vue", () => {
         state: "CA",
         postal_code: "67890",
         country: "USA",
-        website_url: "https://brewerytwo.com",
-      },
+        website_url: "https://brewerytwo.com"
+      }
     ]);
   });
 
   it("renders the BreweryList and calls fetchBreweries on mount", async () => {
     const wrapper = mount(BreweryList, {
       global: {
-        plugins: [mockRouter],
-      },
+        plugins: [mockRouter]
+      }
     });
 
     // Wait for vue updates to be called
@@ -81,8 +81,8 @@ describe("BreweryList.vue", () => {
   it("updates the brewery list when the search bar emits a search event", async () => {
     const wrapper = mount(BreweryList, {
       global: {
-        plugins: [mockRouter],
-      },
+        plugins: [mockRouter]
+      }
     });
     mockFetchBreweries.mockResolvedValueOnce([
       {
@@ -95,8 +95,8 @@ describe("BreweryList.vue", () => {
         state: "CA",
         postal_code: "90210",
         country: "USA",
-        website_url: "https://brewerysearch.com",
-      },
+        website_url: "https://brewerysearch.com"
+      }
     ]);
     const searchBar = wrapper.findComponent(SearchBar);
     searchBar.vm.$emit("search", "Search");
@@ -112,8 +112,8 @@ describe("BreweryList.vue", () => {
   it("navigates to the correct page when pagination buttons are clicked", async () => {
     const wrapper = mount(BreweryList, {
       global: {
-        plugins: [mockRouter],
-      },
+        plugins: [mockRouter]
+      }
     });
 
     mockFetchBreweries.mockResolvedValueOnce([
@@ -127,8 +127,8 @@ describe("BreweryList.vue", () => {
         state: "CO",
         postal_code: "80202",
         country: "USA",
-        website_url: "https://brewerypagetwo.com",
-      },
+        website_url: "https://brewerypagetwo.com"
+      }
     ]);
     const pagination = wrapper.findComponent(Pagination);
     pagination.vm.$emit("change-page", 2);
@@ -142,8 +142,8 @@ describe("BreweryList.vue", () => {
   it("displays the loading message while breweries are being fetched", async () => {
     const wrapper = mount(BreweryList, {
       global: {
-        plugins: [mockRouter],
-      },
+        plugins: [mockRouter]
+      }
     });
 
     // Wait for vue updates to be called
@@ -164,15 +164,15 @@ describe("BreweryList.vue", () => {
     mockFetchBreweries.mockRejectedValueOnce(new Error("API Error"));
     const wrapper = mount(BreweryList, {
       global: {
-        plugins: [mockRouter],
-      },
+        plugins: [mockRouter]
+      }
     });
 
     // Wait for vue updates to be called
     await wrapper.vm.$nextTick();
     expect(consoleErrorSpy).toHaveBeenCalledWith(
       "Error fetching breweries:",
-      expect.any(Error),
+      expect.any(Error)
     );
     expect(wrapper.findAll(".brewery-item")).toHaveLength(0);
     consoleErrorSpy.mockRestore();
@@ -181,8 +181,8 @@ describe("BreweryList.vue", () => {
   it("updates brewery list when BreweryListSelector selection changes", async () => {
     const wrapper = mount(BreweryList, {
       global: {
-        plugins: [mockRouter],
-      },
+        plugins: [mockRouter]
+      }
     });
 
     const searchBar = wrapper.findComponent(SearchBar);

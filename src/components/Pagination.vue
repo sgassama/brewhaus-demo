@@ -16,16 +16,14 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-
-export default defineComponent({
-  name: "Pagination",
-  props: {
-    currentPage: { type: Number, required: true },
-    totalPages: { type: Number, required: true },
-  },
-});
+<script lang="ts" setup>
+defineEmits<{
+  "change-page": [type: number]
+}>();
+defineProps<{
+  currentPage: number,
+  totalPages: number,
+}>();
 </script>
 
 <style scoped>
@@ -46,9 +44,8 @@ export default defineComponent({
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition:
-    background-color 0.2s,
-    transform 0.2s;
+  transition: background-color 0.2s,
+  transform 0.2s;
 }
 
 .pagination button:disabled {

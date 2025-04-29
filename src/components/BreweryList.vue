@@ -56,13 +56,10 @@
 </template>
 
 <script setup lang="ts">
-import BreweryTypeSelector from "@/components/BreweryTypeSelector.vue";
-import Pagination from "@/components/Pagination.vue";
-import SearchBar from "@/components/SearchBar.vue";
 import * as api from "@/services/api.ts";
-import type { Brewery } from "@/types";
 import {
   IonCard,
+  IonContent,
   IonFooter,
   IonHeader,
   IonItem,
@@ -70,10 +67,13 @@ import {
   IonSpinner,
   IonTitle,
   IonToolbar,
-  IonContent,
 } from "@ionic/vue";
 import { computed, onMounted, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import type { Brewery } from "@/types";
+import BreweryTypeSelector from "@/components/BreweryTypeSelector.vue";
+import Pagination from "@/components/Pagination.vue";
+import SearchBar from "@/components/SearchBar.vue";
 
 const route = useRoute();
 const router = useRouter();

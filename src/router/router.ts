@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "@ionic/vue-router";
-import HomePage from "@/views/HomePage.vue"; // Make sure the path matches your project structure.
 import DetailsPage from "@/views/DetailsPage.vue";
+import HomePage from "@/views/HomePage.vue"; // Make sure the path matches your project structure.
 
 import type { RouteRecordRaw } from "vue-router";
 

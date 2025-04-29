@@ -1,7 +1,7 @@
-import type { Brewery } from "@/types";
-import { describe, it, expect, vi } from "vitest";
-import axios from "axios";
+import { describe, expect, it, vi } from "vitest";
 import { fetchBreweries, fetchBreweryDetails } from "@/services/api";
+import type { Brewery } from "@/types";
+import axios from "axios";
 
 vi.mock("axios");
 const mockedAxios = vi.mocked(axios, true);

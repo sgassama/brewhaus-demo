@@ -1,5 +1,5 @@
-import Pagination from "@/components/Pagination.vue";
 import { fireEvent, render, screen } from "@testing-library/vue";
+import Pagination from "@/components/Pagination.vue";
 
 describe("Pagination.vue", () => {
   it("renders correctly with current page and total pages", () => {
