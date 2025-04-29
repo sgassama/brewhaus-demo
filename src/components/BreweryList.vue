@@ -16,7 +16,7 @@
     <SearchBar @search="handleSearch"/>
 
     <template v-if="loading">
-      <ion-spinner name="lines"></ion-spinner>
+      <ion-spinner id="loading-spinner" name="lines"></ion-spinner>
     </template>
 
     <!--  <div>Selected: {{ breweryType || 'All' }}</div>-->
@@ -70,7 +70,7 @@ const currentPage = ref<number>(Number(route.query.page) || 1);
 const perPage = ref<number>(10);
 const totalBreweries = ref<number>(0);
 const searchQuery = ref<string>(route.query.search as string || '');
-const loading = ref<boolean>(false);
+const loading = ref<boolean>(true);
 const totalPages = computed(() => {
   return Math.ceil(totalBreweries.value / perPage.value);
 });
@@ -109,6 +109,7 @@ const handleSearch = (query: string): void => {
     name: route.name,
     query: { ...route.query, page: 1, search: query },
   });
+  searchQuery.value = query;
 
   fetchBreweries();
 };
@@ -134,6 +135,8 @@ watch(() => breweryType.value, (newType) => {
     name: route.name,
     query: { ...route.query, breweryType: newType, page: 1 },
   });
+  currentPage.value = 1;
+
   fetchBreweries();
 });
 

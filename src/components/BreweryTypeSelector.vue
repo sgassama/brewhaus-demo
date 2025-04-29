@@ -1,24 +1,20 @@
 <template>
-
-  <ion-list>
-    <ion-item>
-      <ion-select :value="type" @ionChange="type = $event.target.value" interface="popover">
-        <ion-select-option value="micro">Micro</ion-select-option>
-        <ion-select-option value="large">Large</ion-select-option>
-        <ion-select-option value="">All</ion-select-option>
-      </ion-select>
-    </ion-item>
-  </ion-list>
-
+  <select v-model="type">
+    <option disabled
+            value="">Please select one
+    </option>
+    <option value="micro">Micro</option>
+    <option value="large">Large</option>
+    <option value="">All</option>
+  </select>
 </template>
 
 <script setup
         lang="ts">
+const type = defineModel<string>();
+
 // import type { SelectCustomEvent } from '@ionic/core';
 // import { watch } from 'vue';
-import { IonSelect, IonList, IonItem, IonSelectOption } from '@ionic/vue';
-
-const type = defineModel<string>();
 
 // const emits = defineEmits<{
 //   'update:modelValue': [type: string]

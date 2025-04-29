@@ -20,5 +20,6 @@
   "include": [
     "jest-dom.d.ts",
     "src/**/*.test.ts"
-  ]
+  ],
+  "exclude": ["node_modules"]
 }

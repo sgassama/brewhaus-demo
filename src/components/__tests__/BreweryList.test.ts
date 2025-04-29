@@ -1,11 +1,11 @@
-import BreweryList from '@/components/BreweryList.vue'
-import BreweryTypeSelector from '@/components/BreweryTypeSelector.vue'
-import Pagination from '@/components/Pagination.vue'
-import SearchBar from '@/components/SearchBar.vue'
-import * as api from '@/services/api'
-import { mount } from '@vue/test-utils'
-import flushPromises from 'flush-promises'
-import { createRouter, createWebHistory } from 'vue-router'
+import BreweryList from '@/components/BreweryList.vue';
+import BreweryTypeSelector from '@/components/BreweryTypeSelector.vue';
+import Pagination from '@/components/Pagination.vue';
+import SearchBar from '@/components/SearchBar.vue';
+import * as api from '@/services/api';
+import { mount } from '@vue/test-utils';
+import flushPromises from 'flush-promises';
+import { createRouter, createWebHistory } from 'vue-router';
 
 const mockRouter = createRouter({
   history: createWebHistory(),
@@ -21,13 +21,13 @@ const mockRouter = createRouter({
       component: { template: '<div>Details Page</div>' },
     },
   ],
-})
+});
 
 describe('BreweryList.vue', () => {
-  let mockFetchBreweries: ReturnType<typeof vi.fn>
+  let mockFetchBreweries: ReturnType<typeof vi.fn>;
 
   beforeEach(() => {
-    mockFetchBreweries = vi.spyOn(api, 'fetchBreweries') as ReturnType<typeof vi.fn>
+    mockFetchBreweries = vi.spyOn(api, 'fetchBreweries') as ReturnType<typeof vi.fn>;
     mockFetchBreweries.mockResolvedValue([
       {
         id: '1',
@@ -54,34 +54,35 @@ describe('BreweryList.vue', () => {
         country: 'USA',
         website_url: 'https://brewerytwo.com',
       },
-    ])
-  })
+    ]);
+  });
 
   it('renders the BreweryList and calls fetchBreweries on mount', async () => {
     const wrapper = mount(BreweryList, {
       global: {
         plugins: [mockRouter],
       },
-    })
+    });
 
     // Wait for vue updates to be called
-    await wrapper.vm.$nextTick()
-    expect(wrapper.text()).toContain('Loading breweries...')
-    expect(mockFetchBreweries).toHaveBeenCalledWith(1, 10, '')
+    await wrapper.vm.$nextTick();
+    wrapper.get('#loading-spinner');
+
+    expect(mockFetchBreweries).toHaveBeenCalledWith(1, 10, '', '');
 
     // Wait for vue updates to be called
-    await wrapper.vm.$nextTick()
-    expect(wrapper.text()).toContain('Brewery One')
-    expect(wrapper.text()).toContain('Brewery Two')
-    expect(wrapper.text()).not.toContain('Loading breweries...')
-  })
+    await wrapper.vm.$nextTick();
+    expect(wrapper.text()).toContain('Brewery One');
+    expect(wrapper.text()).toContain('Brewery Two');
+    expect(wrapper.text()).not.toContain('Loading breweries...');
+  });
 
   it('updates the brewery list when the search bar emits a search event', async () => {
     const wrapper = mount(BreweryList, {
       global: {
         plugins: [mockRouter],
       },
-    })
+    });
     mockFetchBreweries.mockResolvedValueOnce([
       {
         id: '3',
@@ -95,24 +96,24 @@ describe('BreweryList.vue', () => {
         country: 'USA',
         website_url: 'https://brewerysearch.com',
       },
-    ])
-    const searchBar = wrapper.findComponent(SearchBar)
-    searchBar.vm.$emit('search', 'Search')
+    ]);
+    const searchBar = wrapper.findComponent(SearchBar);
+    searchBar.vm.$emit('search', 'Search');
 
     // Wait for fetch and vue updates to be called
-    await flushPromises()
-    await wrapper.vm.$nextTick()
-    expect(mockFetchBreweries).toHaveBeenCalledWith(1, 10, 'Search')
-    expect(wrapper.text()).toContain('Search Brewery')
-    expect(wrapper.text()).not.toContain('Brewery One')
-  })
+    await flushPromises();
+    await wrapper.vm.$nextTick();
+    expect(mockFetchBreweries).toHaveBeenCalledWith(1, 10, 'Search', '');
+    expect(wrapper.text()).toContain('Search Brewery');
+    expect(wrapper.text()).not.toContain('Brewery One');
+  });
 
   it('navigates to the correct page when pagination buttons are clicked', async () => {
     const wrapper = mount(BreweryList, {
       global: {
         plugins: [mockRouter],
       },
-    })
+    });
 
     mockFetchBreweries.mockResolvedValueOnce([
       {
@@ -127,66 +128,69 @@ describe('BreweryList.vue', () => {
         country: 'USA',
         website_url: 'https://brewerypagetwo.com',
       },
-    ])
-    const pagination = wrapper.findComponent(Pagination)
-    pagination.vm.$emit('change-page', 2)
+    ]);
+    const pagination = wrapper.findComponent(Pagination);
+    pagination.vm.$emit('change-page', 2);
 
     // Wait for fetch and vue updates to be called
-    await flushPromises()
-    await wrapper.vm.$nextTick()
-    expect(wrapper.text()).toContain('Brewery Page 2')
-  })
+    await flushPromises();
+    await wrapper.vm.$nextTick();
+    expect(wrapper.text()).toContain('Brewery Page 2');
+  });
 
   it('displays the loading message while breweries are being fetched', async () => {
     const wrapper = mount(BreweryList, {
       global: {
         plugins: [mockRouter],
       },
-    })
+    });
 
     // Wait for vue updates to be called
-    await wrapper.vm.$nextTick()
+    await wrapper.vm.$nextTick();
     // Before breweries are fetched
-    expect(wrapper.text()).toContain('Loading breweries...')
+    expect(wrapper.find('#loading-spinner').exists()).toBe(true);
 
     // Wait for vue updates to be called
-    await wrapper.vm.$nextTick()
+    await wrapper.vm.$nextTick();
     // After breweries are fetched
-    expect(wrapper.text()).not.toContain('Loading breweries...')
-  })
+    expect(wrapper.find('#loading-spinner').exists()).toBe(false);
+  });
 
   it('handles API errors gracefully', async () => {
     const consoleErrorSpy = vi.spyOn(console, 'error')
-                              .mockImplementation(() => {})
-    mockFetchBreweries.mockRejectedValueOnce(new Error('API Error'))
+      .mockImplementation(() => {});
+    mockFetchBreweries.mockRejectedValueOnce(new Error('API Error'));
     const wrapper = mount(BreweryList, {
       global: {
         plugins: [mockRouter],
       },
-    })
+    });
 
     // Wait for vue updates to be called
-    await wrapper.vm.$nextTick()
+    await wrapper.vm.$nextTick();
     expect(consoleErrorSpy).toHaveBeenCalledWith(
       'Error fetching breweries:',
       expect.any(Error),
-    )
-    expect(wrapper.findAll('.brewery-item')).toHaveLength(0)
-    consoleErrorSpy.mockRestore()
-  })
+    );
+    expect(wrapper.findAll('.brewery-item')).toHaveLength(0);
+    consoleErrorSpy.mockRestore();
+  });
 
   it('updates brewery list when BreweryListSelector selection changes', async () => {
     const wrapper = mount(BreweryList, {
       global: {
         plugins: [mockRouter],
       },
-    })
-    const breweryTypeSelect = wrapper.findComponent(BreweryTypeSelector)
-    // await fireEvent.change(breweryTypeSelect.element, { target: { value: 'large' } })
-    breweryTypeSelect.vm.$emit('update:modelValue', 'large')
+    });
 
-    await flushPromises()
-    await wrapper.vm.$nextTick()
-    expect(mockFetchBreweries).toHaveBeenCalledWith(1, 10, '', 'large')
-  })
-})
+    const searchBar = wrapper.findComponent(SearchBar);
+    searchBar.vm.$emit('search', '');
+
+    const breweryTypeSelect = wrapper.findComponent(BreweryTypeSelector);
+    breweryTypeSelect.vm.$emit('update:modelValue', 'large');
+
+    await flushPromises();
+    await wrapper.vm.$nextTick();
+    expect(mockFetchBreweries).toHaveBeenCalledWith(1, 10, '', 'large');
+  });
+});
