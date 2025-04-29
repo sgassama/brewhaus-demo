@@ -11,19 +11,27 @@
 
 <script setup
         lang="ts">
-const type = defineModel<string>()
-// const props = defineProps<{
-//   modelValue: string
-// }>()
+const type = defineModel<string>();
 
+// import type { SelectCustomEvent } from '@ionic/core';
+// import { watch } from 'vue';
 
 // const emits = defineEmits<{
 //   'update:modelValue': [type: string]
 // }>()
-
-// watch(breweryTpe, (type: string) => {
+// const props = defineProps<{
+//   modelValue: string
+// }>()
+// watch(() => props.modelValue, (type: string) => {
+//   console.log(type)
+//   debugger
 //   emits('update:modelValue', type)
 // })
+
+// function handleSelectChange(event: SelectCustomEvent) {
+//   console.log(event)
+//   type.value = event.target?.value;
+// }
 
 </script>
 

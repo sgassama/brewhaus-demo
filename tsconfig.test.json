@@ -2,7 +2,7 @@
   "extends": "@vue/tsconfig/tsconfig.dom.json",
   "compilerOptions": {
     /**/
-    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.test.tsbuildinfo",
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
@@ -15,13 +15,11 @@
         "src/*"
       ]
     },
+    "types": ["vitest/globals"]
   },
   "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue",
-    "src/*.ts",
-    "src/*.tsx",
-    "src/*.vue",
-  ]
+    "jest-dom.d.ts",
+    "src/**/*.test.ts"
+  ],
+  "exclude": ["node_modules"]
 }

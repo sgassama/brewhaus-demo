@@ -13,10 +13,20 @@ export default defineConfig({
   server: {
     host: '0.0.0.0'
   },
+  build: {
+    sourcemap: true, // enable production source maps
+  },
+  css: {
+    devSourcemap: true // enable CSS source maps during development
+  },
+  dev: {
+    sourcemap: true
+  },
   // @ts-ignore
   test: {
     globals: true, // Allows using global test functions like `describe`, `it` without import
     environment: 'happy-dom', // Simulates a DOM for unit tests
     setupFiles: './vitest.setup.ts', // (Optional) Specify a setup file (see next step)
+    transformIgnorePatterns: ['node_modules/(?!(ion|@ionic))']
   },
 })
