@@ -2,14 +2,14 @@
 
   <ion-header :translucent="true">
     <ion-toolbar>
-      <ion-title>Hoppy To Be-Er | Breweries</ion-title>
+      <ion-title data-test="app-header">Hoppy To Be-Er | Breweries</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <ion-content>
     <ion-header collapse="condense">
       <ion-toolbar>
-        <ion-title size="large">Hoppy To Be-Er | Breweries</ion-title>
+        <ion-title data-test="app-header" size="large">Hoppy To Be-Er | Breweries</ion-title>
       </ion-toolbar>
     </ion-header>
 
