@@ -1,11 +1,14 @@
 <template>
   <ion-page>
-
     <ion-header v-if="brewery" :translucent="true">
       <ion-toolbar>
-        <ion-title v-if="brewery?.name && !loading" size="large">{{ brewery?.name }}</ion-title>
-        <router-link :to="{ name: 'Home', query: $route.query }"
-                     class="back-link">
+        <ion-title v-if="brewery?.name && !loading" size="large">{{
+          brewery?.name
+        }}</ion-title>
+        <router-link
+          :to="{ name: 'Home', query: $route.query }"
+          class="back-link"
+        >
           Back to list
         </router-link>
       </ion-toolbar>
@@ -14,26 +17,37 @@
     <ion-content :fullscreen="true">
       <ion-header v-if="brewery" collapse="condense">
         <ion-toolbar>
-          <ion-title size="large">{{ brewery?.name || 'Hoppy To Be\'Er' }}</ion-title>
-          <router-link :to="{ name: 'Home', query: $route.query }"
-                       class="back-link">
+          <ion-title size="large">{{
+            brewery?.name || "Hoppy To Be'Er"
+          }}</ion-title>
+          <router-link
+            :to="{ name: 'Home', query: $route.query }"
+            class="back-link"
+          >
             Back to list
           </router-link>
         </ion-toolbar>
       </ion-header>
-
 
       <div v-if="loading" class="loading">Loading brewery details...</div>
 
       <template v-else-if="brewery">
         <ion-card class="brewery-details">
           <p><strong>Type:</strong> {{ brewery.brewery_type }}</p>
-          <p><strong>Address:</strong> {{ brewery.street }}, {{ brewery.city }}, {{ brewery.state }}</p>
+          <p>
+            <strong>Address:</strong> {{ brewery.street }}, {{ brewery.city }},
+            {{ brewery.state }}
+          </p>
           <p><strong>Postal Code:</strong> {{ brewery.postal_code }}</p>
           <p><strong>Country:</strong> {{ brewery.country }}</p>
           <p>
             <strong>Website: </strong>
-            <a :href="brewery.website_url" target="_blank" rel="noopener noreferrer" class="brewery-link">
+            <a
+              :href="brewery.website_url"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="brewery-link"
+            >
               {{ brewery.website_url }}
             </a>
             <span v-if="!brewery.website_url">N/A</span>
@@ -49,12 +63,18 @@
 </template>
 
 <script lang="ts" setup>
-import * as api from '@/services/api.ts';
-import type { Brewery } from '@/types';
-import { IonCard, IonContent, IonHeader, IonPage, IonToolbar } from '@ionic/vue';
-import { useHead } from '@vueuse/head';
-import { onMounted, ref } from 'vue';
-import { useRoute } from 'vue-router';
+import * as api from "@/services/api.ts";
+import {
+  IonCard,
+  IonContent,
+  IonHeader,
+  IonPage,
+  IonToolbar,
+} from "@ionic/vue";
+import { onMounted, ref } from "vue";
+import type { Brewery } from "@/types";
+// import { useHead } from "@vueuse/head";
+import { useRoute } from "vue-router";
 
 const route = useRoute();
 const brewery = ref<Brewery | null>(null);
@@ -80,9 +100,8 @@ const fetchBreweryDetails = async (): Promise<void> => {
     //     },
     //   ],
     // });
-
   } catch (error) {
-    console.error('Error fetching brewery details:', error);
+    console.error("Error fetching brewery details:", error);
     brewery.value = null; // Reset to null on error
   } finally {
     loading.value = false;
@@ -92,7 +111,6 @@ const fetchBreweryDetails = async (): Promise<void> => {
 onMounted(() => {
   fetchBreweryDetails();
 });
-
 </script>
 
 <style scoped>
