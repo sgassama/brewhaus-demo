@@ -1,8 +1,8 @@
-import Pagination from '@/components/Pagination.vue';
-import { fireEvent, render, screen } from '@testing-library/vue';
+import Pagination from "@/components/Pagination.vue";
+import { fireEvent, render, screen } from "@testing-library/vue";
 
-describe('Pagination.vue', () => {
-  it('renders correctly with current page and total pages', () => {
+describe("Pagination.vue", () => {
+  it("renders correctly with current page and total pages", () => {
     render(Pagination, {
       props: {
         currentPage: 2,
@@ -10,7 +10,7 @@ describe('Pagination.vue', () => {
       },
     });
 
-    expect(screen.getByText('Page 2 of 5')).toBeInTheDocument();
+    expect(screen.getByText("Page 2 of 5")).toBeInTheDocument();
   });
 
   it('disables the "Prev" button on the first page', () => {
@@ -20,7 +20,7 @@ describe('Pagination.vue', () => {
         totalPages: 5,
       },
     });
-    const prevButton = screen.getByText('Prev') as HTMLButtonElement;
+    const prevButton = screen.getByText("Prev") as HTMLButtonElement;
 
     expect(prevButton).toBeDisabled();
   });
@@ -32,7 +32,7 @@ describe('Pagination.vue', () => {
         totalPages: 5,
       },
     });
-    const nextButton = screen.getByText('Next') as HTMLButtonElement;
+    const nextButton = screen.getByText("Next") as HTMLButtonElement;
 
     expect(nextButton).toBeDisabled();
   });
@@ -44,12 +44,12 @@ describe('Pagination.vue', () => {
         totalPages: 5,
       },
     });
-    const prevButton = screen.getByText('Prev');
+    const prevButton = screen.getByText("Prev");
 
     await fireEvent.click(prevButton);
 
-    expect(emitted()['change-page']).toHaveLength(1);
-    expect(emitted()['change-page'][0]).toEqual([2]); // previous page was 3
+    expect(emitted()["change-page"]).toHaveLength(1);
+    expect(emitted()["change-page"][0]).toEqual([2]); // previous page was 3
   });
 
   it('emits "change-page" with the next page when "Next" button is clicked', async () => {
@@ -59,12 +59,12 @@ describe('Pagination.vue', () => {
         totalPages: 5,
       },
     });
-    const nextButton = screen.getByText('Next');
+    const nextButton = screen.getByText("Next");
 
     await fireEvent.click(nextButton);
 
-    expect(emitted()['change-page']).toHaveLength(1);
-    expect(emitted()['change-page'][0]).toEqual([4]); // previous page was 3
+    expect(emitted()["change-page"]).toHaveLength(1);
+    expect(emitted()["change-page"][0]).toEqual([4]); // previous page was 3
   });
 
   it('does not emit "change-page" when "Prev" button is clicked on the first page', async () => {
@@ -74,11 +74,11 @@ describe('Pagination.vue', () => {
         totalPages: 5,
       },
     });
-    const prevButton = screen.getByText('Prev');
+    const prevButton = screen.getByText("Prev");
 
     await fireEvent.click(prevButton);
 
-    expect(emitted()['change-page']).toBeUndefined();
+    expect(emitted()["change-page"]).toBeUndefined();
   });
 
   it('does not emit "change-page" when "Next" button is clicked on the last page', async () => {
@@ -88,10 +88,10 @@ describe('Pagination.vue', () => {
         totalPages: 5,
       },
     });
-    const nextButton = screen.getByText('Next');
+    const nextButton = screen.getByText("Next");
 
     await fireEvent.click(nextButton);
 
-    expect(emitted()['change-page']).toBeUndefined();
+    expect(emitted()["change-page"]).toBeUndefined();
   });
 });

@@ -1,18 +1,18 @@
 <template>
   <ion-app id="app">
-
-      <img src="@/assets/beer-mug.svg"
-           alt="Hoppy To Be-Er Logo"
-           width="100"
-           height="100"
-           class="logo"
-      >
-      <ion-router-outlet></ion-router-outlet>
+    <img
+      src="@/assets/beer-mug.svg"
+      alt="Hoppy To Be-Er Logo"
+      width="100"
+      height="100"
+      class="logo"
+    />
+    <ion-router-outlet></ion-router-outlet>
   </ion-app>
 </template>
 
 <script lang="ts" setup>
-import { IonApp, IonRouterOutlet, IonPage } from '@ionic/vue';
+import { IonApp, IonRouterOutlet } from "@ionic/vue";
 </script>
 
 <style scoped>

@@ -1,16 +1,26 @@
 <template>
   <div class="pagination">
-    <button :disabled="currentPage === 1" @click="$emit('change-page', currentPage - 1)">Prev</button>
+    <button
+      :disabled="currentPage === 1"
+      @click="$emit('change-page', currentPage - 1)"
+    >
+      Prev
+    </button>
     <span>Page {{ currentPage }} of {{ totalPages }}</span>
-    <button :disabled="currentPage === totalPages" @click="$emit('change-page', currentPage + 1)">Next</button>
+    <button
+      :disabled="currentPage === totalPages"
+      @click="$emit('change-page', currentPage + 1)"
+    >
+      Next
+    </button>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: 'Pagination',
+  name: "Pagination",
   props: {
     currentPage: { type: Number, required: true },
     totalPages: { type: Number, required: true },
@@ -32,11 +42,13 @@ export default defineComponent({
   padding: 10px 15px;
   font-size: 14px;
   color: #ffffff;
-  background-color: #007BFF;
+  background-color: #007bff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.2s, transform 0.2s;
+  transition:
+    background-color 0.2s,
+    transform 0.2s;
 }
 
 .pagination button:disabled {

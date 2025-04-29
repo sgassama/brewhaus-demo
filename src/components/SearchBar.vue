@@ -1,26 +1,26 @@
 <template>
   <div class="search-bar">
     <input
-        type="text"
-        v-model="searchQuery"
-        placeholder="Search breweries..."
-        @keyup.enter="onSearch"
+      type="text"
+      v-model="searchQuery"
+      placeholder="Search breweries..."
+      @keyup.enter="onSearch"
     />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
-import { useRoute } from 'vue-router'
+import { defineComponent, ref } from "vue";
+import { useRoute } from "vue-router";
 
 export default defineComponent({
-  name: 'SearchBar',
+  name: "SearchBar",
   setup(_, { emit }) {
     const route = useRoute();
-    const searchQuery = ref<string>(route.query.search as string || '');
+    const searchQuery = ref<string>((route.query.search as string) || "");
 
     const onSearch = (): void => {
-      emit('search', searchQuery.value);
+      emit("search", searchQuery.value);
     };
 
     return {
@@ -47,11 +47,13 @@ export default defineComponent({
   width: 100%;
   max-width: 400px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
 }
 
 .search-bar input:focus {
-  border-color: #007BFF;
+  border-color: #007bff;
   box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
 }
 </style>
