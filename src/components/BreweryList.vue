@@ -72,23 +72,8 @@ import {
   IonToolbar
 } from "@ionic/vue";
 import { ref, watch } from "vue";
-// import { useRoute, useRouter } from "vue-router";
-
-// const route = useRoute();
-// const router = useRouter();
 
 const breweryStore = useBreweryStore();
-// const { breweries, loading, page: currentPage, totalPages } = useBreweryStore();
-
-// const breweries = ref<Brewery[]>([]);
-// const currentPage = ref<number>(Number(route.query.page) || 1);
-// const perPage = ref<number>(10);
-// const totalBreweries = ref<number>(0);
-// const searchQuery = ref<string>((route.query.search as string) || "");
-// const loading = ref<boolean>(true);
-// const totalPages = computed(() => {
-//   return Math.ceil(totalBreweries.value / perPage.value);
-// });
 const breweryType = ref<string>(breweryStore.type);
 
 const goToPage = (page: number): void => {
@@ -104,7 +89,7 @@ watch(
   (newType) => {
     breweryStore.type = newType;
   }
-)
+);
 </script>
 
 <style scoped>
