@@ -31,7 +31,11 @@ export default defineConfig({
     // @ts-ignore
     transformIgnorePatterns: ['node_modules/(?!(ion|@ionic))'],
     coverage: {
-      exclude: ["ios", "dist", "cypress", "vitest.setup.*", "src/types", "capacitor.config.ts", ...coverageConfigDefaults.exclude]
+      exclude: ["ios", "dist", "cypress", "vitest.setup.*", "src/types", "capacitor.config.ts", ...coverageConfigDefaults.exclude],
+      // you can include other reporters, but 'json-summary' is required, json is recommended
+      reporter: ['text', 'json-summary', 'json'],
+      // If you want a coverage reports even if your tests are failing, include the reportOnFailure option
+      reportOnFailure: true,
     }
   },
 })
