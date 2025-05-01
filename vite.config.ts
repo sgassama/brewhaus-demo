@@ -1,6 +1,7 @@
 import vue from '@vitejs/plugin-vue'
 import path from 'path';
 import { defineConfig } from "vite";
+import { coverageConfigDefaults } from "vitest/config";
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -27,6 +28,10 @@ export default defineConfig({
     globals: true, // Allows using global test functions like `describe`, `it` without import
     environment: 'happy-dom', // Simulates a DOM for unit tests
     setupFiles: './vitest.setup.ts', // (Optional) Specify a setup file (see next step)
-    transformIgnorePatterns: ['node_modules/(?!(ion|@ionic))']
+    // @ts-ignore
+    transformIgnorePatterns: ['node_modules/(?!(ion|@ionic))'],
+    coverage: {
+      exclude: ["ios", "dist", "cypress", "vitest.setup.*", "src/types", "capacitor.config.ts", ...coverageConfigDefaults.exclude]
+    }
   },
 })

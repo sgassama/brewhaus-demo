@@ -27,13 +27,8 @@ export default [
           allowTernary: true
         }
       ],
-      "sort-imports": ["error", {
-        "ignoreCase": false,
-        "ignoreDeclarationSort": false,
-        "ignoreMemberSort": false,
-        "memberSyntaxSortOrder": ["none", "all", "multiple", "single"],
-        "allowSeparatedGroups": false
-      }]
+      "@typescript-eslint/ban-ts-comment": "off",
+      "@typescript-eslint/ban-tslint-comment": "off"
     }
   }
 ];
