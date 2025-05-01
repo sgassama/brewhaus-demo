@@ -18,13 +18,16 @@ import "@ionic/vue/css/display.css";
 import "@/theme/variables.css";
 
 import App from "@/App.vue";
-import { IonicVue } from "@ionic/vue";
-import { createApp } from "vue";
-import { createHead } from "@vueuse/head";
 import router from "@/router/router";
+import { IonicVue } from "@ionic/vue";
+import { createHead } from "@vueuse/head";
+import { createPinia } from "pinia";
+import { createApp } from "vue";
+
+const pinia = createPinia();
 
 const head = createHead();
-const app = createApp(App).use(IonicVue).use(router).use(head);
+const app = createApp(App).use(pinia).use(IonicVue).use(router).use(head);
 
 router.isReady().then(() => {
   app.mount("#app");

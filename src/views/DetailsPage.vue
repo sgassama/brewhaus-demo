@@ -73,7 +73,7 @@ import {
 } from "@ionic/vue";
 import { onMounted, ref } from "vue";
 import type { Brewery } from "@/types";
-// import { useHead } from "@vueuse/head";
+import { useHead } from "@vueuse/head";
 import { useRoute } from "vue-router";
 
 const route = useRoute();
@@ -87,19 +87,19 @@ const fetchBreweryDetails = async (): Promise<void> => {
   try {
     brewery.value = await api.fetchBreweryDetails(breweryId);
 
-    // useHead({
-    //   title: `${ brewery.value?.name ? brewery.value.name + ' | ' : null } Hoppy To Be-Er`,
-    //   meta: [
-    //     {
-    //       name: 'keywords',
-    //       content: `${ brewery.value?.name ?
-    //           brewery.value.name + ',' :
-    //           null } Brewery, Beer, Brewing, ${ brewery.value?.city ?
-    //           brewery.value.city + ',' :
-    //           null } ${ brewery.value?.state ? brewery.value.state : '' }`,
-    //     },
-    //   ],
-    // });
+    useHead({
+      title: `${ brewery.value?.name ? brewery.value.name + ' | ' : null } Hoppy To Be-Er`,
+      meta: [
+        {
+          name: 'keywords',
+          content: `${ brewery.value?.name ?
+              brewery.value.name + ',' :
+              null } Brewery, Beer, Brewing, ${ brewery.value?.city ?
+              brewery.value.city + ',' :
+              null } ${ brewery.value?.state ? brewery.value.state : '' }`,
+        },
+      ],
+    });
   } catch (error) {
     console.error("Error fetching brewery details:", error);
     brewery.value = null; // Reset to null on error
